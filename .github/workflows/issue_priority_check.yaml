@@ -1,0 +1,22 @@
+name: 'issues priority check'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '* * * */6 *'
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./\.github/workflows/scripts/issue_priority.js')
+            script({github, context})
+
