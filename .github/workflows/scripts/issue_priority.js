@@ -1,16 +1,16 @@
 /* 
-When event occour, it will fetch all the open issues with label p0.
+When event occour, it will fetch all the open issues with label P0.
 Check if label is more then 60 days old.
-If yes, it will change the label to p1.
+If yes, it will change the label to P1.
 */
 module.exports = async ({ github, context }) => {
    
-    //fetch all the open issues with label p0
+    //fetch all the open issues with label P0
     let issues = await github.rest.issues.listForRepo({
         owner: context.repo.owner,
         repo: context.repo.repo,
         state: "open",
-        labels: "p0"
+        labels: "P0"
     });
     if (issues.status != 200)
         return
@@ -27,25 +27,25 @@ module.exports = async ({ github, context }) => {
         for (let i = 0; i < events.length; i++) {
             let event_details = events[i];
             console.log("event_details",event_details)
-            if (event_details.event == 'labeled' && event_details.label && event_details.label.name == "p0") {
+            if (event_details.event == 'labeled' && event_details.label && event_details.label.name == "P0") {
                 let currentDate = new Date();
                 let labeledDate = new Date(event_details.created_at)
                 console.log("time diff",currentDate - labeledDate)
                 if (currentDate - labeledDate > 2) {
-                    //remove label p0 if more then 60 days old
+                    //remove label P0 if more then 60 days old
                     await github.rest.issues.removeLabel({
                         issue_number: number,
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        name: "p0"
+                        name: "P0"
 
                     })
-                    //add label p1
+                    //add label P1
                     await github.rest.issues.addLabels({
                         issue_number: number,
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        labels:["p1"]
+                        labels:["P1"]
 
                     })
                 }
