@@ -2,7 +2,7 @@ name: 'issues priority check'
 on:
   workflow_dispatch:
   schedule:
-    - cron: '* */24 * * *'
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: read
