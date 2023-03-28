@@ -77,7 +77,7 @@ module.exports = async ({ github, context }) => {
         for (let i = 0; i < p1events.length; i++) {
             let p1event_details = p1resp[i];
             console.log("event_details",p1event_details)
-            if (p1event_details.p1event == 'labeled' && p1event_details.label && p1event_details.label.name == "P1") {
+            if (p1event_details.event == 'labeled' && p1event_details.label && p1event_details.label.name == "P1") {
                 let currentDate = new Date();
                 let labeledDate = new Date(event_details.created_at)
                 console.log("time diff",currentDate - labeledDate)
