@@ -56,15 +56,15 @@ module.exports = async ({ github, context }) => {
    
    
     //fetch all the open issues with label P1
-    let issues = await github.rest.issues.listForRepo({
+    let issues_p1 = await github.rest.issues.listForRepo({
         owner: context.repo.owner,
         repo: context.repo.repo,
         state: "open",
         labels: "P1"
     });
-    if (issues.status != 200)
+    if (issues_p1.status != 200)
         return
-   let issueList = issues.data
+   let issueList = issues_p1.data
     for (let i = 0; i < issueList.length; i++) {
         let number = issueList[i].number;
         // fetch label all the events inside issues 
