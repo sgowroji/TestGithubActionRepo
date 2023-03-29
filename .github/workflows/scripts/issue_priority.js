@@ -53,8 +53,7 @@ module.exports = async ({ github, context }) => {
             }
         }
     }
-}
-module.exports = async ({ github, context }) => {
+   
    
     //fetch all the open issues with label P1
     let issues = await github.rest.issues.listForRepo({
@@ -104,4 +103,6 @@ module.exports = async ({ github, context }) => {
             }
         }
     }
+   
+   
 }
