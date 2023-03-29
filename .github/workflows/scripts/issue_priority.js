@@ -64,22 +64,22 @@ module.exports = async ({ github, context }) => {
     });
     if (issues_p1.status != 200)
         return
-   let issueList = issues_p1.data
+   let issueList_p1 = issues_p1.data
     for (let i = 0; i < issueList.length; i++) {
-        let number = issueList[i].number;
+        let number_p1 = issueList_p1[i].number;
         // fetch label all the events inside issues 
         let resp = await github.rest.issues.listEventsForTimeline({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            issue_number: number,
+            issue_number: number_p1,
         });
-        let events = resp.data;
-        for (let i = 0; i < events.length; i++) {
-            let event_details = events[i];
-            console.log("event_details",event_details)
-            if (event_details.event == 'labeled' && event_details.label && event_details.label.name == "P1") {
+        let events_p1 = resp.data;
+        for (let i = 0; i < events_p1.length; i++) {
+            let event_details_p1 = events_p1[i];
+            console.log("event_details",event_details_p1)
+            if (event_details_p1.event == 'labeled' && event_details_p1.label && event_details_p1.label.name == "P1") {
                 let currentDate = new Date();
-                let labeledDate = new Date(event_details.created_at)
+                let labeledDate = new Date(event_details_p1.created_at)
                 console.log("time diff",currentDate - labeledDate)
                 if (currentDate - labeledDate > 2) {
                     //remove label P1 if more then 60 days old
