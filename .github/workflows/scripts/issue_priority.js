@@ -54,8 +54,7 @@ module.exports = async ({ github, context }) => {
                     })
                 }
 
-            }
-           elif(event_details.event == 'labeled' && event_details.label && event_details.label.name == "P1") {
+            }else if(event_details.event == 'labeled' && event_details.label && event_details.label.name == "P1") {
                
                 let labeledDate = new Date(event_details.created_at)
                 console.log("p1 time diff",currentDate - labeledDate)
@@ -77,7 +76,10 @@ module.exports = async ({ github, context }) => {
 
                     })
                 }
+           }else{
+              // Todo
            }
+
         }
     }
  }
