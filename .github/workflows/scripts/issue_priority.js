@@ -12,7 +12,7 @@ module.exports = async ({ github, context }) => {
         state: "open",
         labels: ["P0","P1"]
     });
-   
+   console.log("issues list",issues)
     if (issues.status != 200 )
         return
    
